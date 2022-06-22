@@ -7,6 +7,7 @@ interface SearchContextProps {
 
 type Action =
   | { type: "ADD_INGREDIENT"; payload: Ingredient }
+  | { type: "REMOVE_INGREDIENT"; payload: Ingredient }
 
 export type Ingredient = {
     ingredient: string;
@@ -25,8 +26,9 @@ export const DispatchContext = createContext<React.Dispatch<Action>>(
 const searchReducer: Reducer<Ingredient[], Action> = (state, action) => {
   switch (action.type) {
     case "ADD_INGREDIENT":
-      console.log(action.payload)
-      return [ ...state, action.payload ]; 
+      return [ ...state, action.payload ];
+    case "REMOVE_INGREDIENT":
+      return state.filter(ingredient => ingredient.ingredient !== action.payload.ingredient)
     default:
       return state;
   }

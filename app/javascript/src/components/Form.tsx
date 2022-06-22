@@ -32,20 +32,21 @@ export const MyForm = () => {
       })}
     >
       {({ isSubmitting, touched, errors }) => (
-        <Form>
-          <h1>hello</h1>
-          <Field name="ingredient" />
-          {touched.ingredient && errors.ingredient && <div>{errors.ingredient}</div>}
-
-          <Field name="quantity" />
-          {touched.quantity && errors.quantity && <div>{errors.quantity}</div>}
-
-          <Field as="select" name="unity">
+        <Form className="grid gap-2 grid-cols-1 w-1/3 text-center">
+          <h1>Search Ingredients</h1>
+          <label htmlFor="ingredient">Ingredient</label>
+          <Field name="ingredient" className="text-blue-900 rounded" />
+          {touched.ingredient && errors.ingredient && <div className="text-red-600">{errors.ingredient}</div>}
+          <label htmlFor="quantity">Quantity</label>
+          <Field name="quantity" className="text-blue-900 rounded" />
+          {touched.quantity && errors.quantity && <div className="text-red-600">{errors.quantity}</div>}
+          <label htmlFor="unity">Measurement metric</label>
+          <Field as="select" name="unity" className="text-blue-900 rounded">
             <option value="weight">Weight</option>
             <option value="volume">Volume</option>
             <option value="quant">Quant</option>
           </Field>
-          {touched.unity && errors.unity && <div>{errors.unity}</div>}
+          {touched.unity && errors.unity && <div className="text-red-600">{errors.unity}</div>}
 
 
           <button type="submit" disabled={isSubmitting}>
