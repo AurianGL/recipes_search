@@ -3,34 +3,24 @@ class  Api::V1::RecipesController < ApplicationController
 
   def index
     if params[:ingredients].present?
-      @recipes = search
+      @recipes = Recipes::SearchService.call(params[:ingredients], params[:without_ingredients])
+      render "api/v1/recipes/index.json"
     else
       @recipes = Recipe.order(created_at: :desc).page(params[:page]).pluck(:id, :title, :ingredients, :ratings).map do |id, title, ingredients, ratings| 
         { id: id, title: title, ingredients: ingredients, ratings: ratings }
       end
+      render json: {recipes: @recipes}
     end
-    render json: @recipes
   end
 
   def show
-    render json: @recipe
+    render "api/v1/recipes/show.json"
   end
-
-
 
   private
 
   def set_recipe
     @recipe = Recipe.find(params[:id])
-  end
-
-  def search
-    with_ingredients = params[:ingredients]
-    without_ingredients = params[:without_ingredients] ?
-      params[:without_ingredients].split(' ').map do |ingredient| 
-      "!#{ingredient}"
-    end.join(' ') : '' 
-    Recipe.search_by_title_and_ingredients(with_ingredients + ' '  + without_ingredients).page(1)
   end
 
   def recipe_params

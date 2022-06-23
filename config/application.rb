@@ -20,5 +20,7 @@ module Pennylane
     # config.eager_load_paths << Rails.root.join("extras")
     config.active_record.schema_format = :sql
 
+    config.generators.test_framework = :rspec
+
   end
 end

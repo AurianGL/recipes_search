@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`rendered component 1`] = `
+<form
+  action="#"
+  className="grid gap-2 grid-cols-1 w-1/3 text-center"
+  onReset={[Function]}
+  onSubmit={[Function]}
+>
+  <h1>
+    Search Ingredients
+  </h1>
+  <label
+    htmlFor="ingredient"
+  >
+    Ingredient
+  </label>
+  <input
+    className="text-blue-900 rounded"
+    name="ingredient"
+    onBlur={[Function]}
+    onChange={[Function]}
+    value=""
+  />
+  <label
+    htmlFor="quantity"
+  >
+    Quantity
+  </label>
+  <input
+    className="text-blue-900 rounded"
+    name="quantity"
+    onBlur={[Function]}
+    onChange={[Function]}
+    value={0}
+  />
+  <label
+    htmlFor="unity"
+  >
+    Measurement metric
+  </label>
+  <select
+    className="text-blue-900 rounded"
+    name="unity"
+    onBlur={[Function]}
+    onChange={[Function]}
+    value="quant"
+  >
+    <option
+      value="weight"
+    >
+      Weight
+    </option>
+    <option
+      value="volume"
+    >
+      Volume
+    </option>
+    <option
+      value="quant"
+    >
+      Quant
+    </option>
+  </select>
+  <button
+    disabled={false}
+    type="submit"
+  >
+    Submit
+  </button>
+</form>
+`;

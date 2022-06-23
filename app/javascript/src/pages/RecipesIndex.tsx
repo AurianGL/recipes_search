@@ -1,6 +1,5 @@
 import * as React from "react";
-import { useContext, useEffect, useState } from "react";
-import { DispatchContext, RecipesContext } from "../contexts/recipe_context";
+import { useEffect, useState } from "react";
 import { useAxios } from "../hooks";
 import { RecipeCard } from "../components/RecipeCard";
 
@@ -16,18 +15,9 @@ export const RecipesIndex: React.FC<RecipesIndexProps> = () => {
 
   useEffect(() => {
     if (response !== null) {
-      setData(response);
+      setData(response.recipes);
     }
   }, [response, page]);
-
-  // useContext(RecipesContext);
-  // const dispatch = useContext(DispatchContext);
-
-  // () => 
-
-  // useEffect(() => {
-  //   dispatch({ type: 'INDEX'})
-  // }, [])
 
   return (
     <>

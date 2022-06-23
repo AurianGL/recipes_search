@@ -13,7 +13,7 @@ const IngredientList: React.FC = () => {
   const { response, loading, error } = useAxios({ url: `/api/v1/recipes?ingredients=${state.map(ingredient => ingredient.ingredient).join(' ')}`, method: 'get' })
 
   useEffect(() => {
-    setResult(response);
+    if (response !== null ) setResult(response.recipes);
   }, [state, response])
 
   const removeIngredient = (ingredient) => {

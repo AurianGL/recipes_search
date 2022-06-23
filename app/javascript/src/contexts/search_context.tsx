@@ -1,5 +1,5 @@
 import * as React from "react";
-import { createContext, Reducer, useReducer, useEffect } from "react";
+import { createContext, Reducer, useReducer } from "react";
 
 interface SearchContextProps {
   children: React.ReactNode;
