@@ -11,8 +11,7 @@ type Action =
 
 export type Ingredient = {
     ingredient: string;
-    quantity: number;
-    unity: string;
+    with: 'with' | 'without';
 }
 
 
@@ -26,7 +25,11 @@ export const DispatchContext = createContext<React.Dispatch<Action>>(
 const searchReducer: Reducer<Ingredient[], Action> = (state, action) => {
   switch (action.type) {
     case "ADD_INGREDIENT":
-      return [ ...state, action.payload ];
+      if (state.filter(ingredient => {
+        return ingredient.ingredient === action.payload.ingredient
+      }).length === 0) 
+        return [ ...state, action.payload ];
+      return state
     case "REMOVE_INGREDIENT":
       return state.filter(ingredient => ingredient.ingredient !== action.payload.ingredient)
     default:

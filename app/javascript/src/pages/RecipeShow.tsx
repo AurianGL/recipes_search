@@ -1,8 +1,7 @@
 import * as React from "react";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { RecipeCard } from "../components/RecipeCard";
-import { DispatchContext, RecipesContext } from "../contexts/recipe_context";
 import { useAxios } from "../hooks";
 
 
@@ -13,7 +12,7 @@ interface RecipeShowProps {
 export const RecipeShow: React.FC<RecipeShowProps> = (props) => {
   const params = useParams();
 
-  const { response, loading, error } = useAxios({url: "/api/v1/recipes/" + params.id, method: 'get'});
+  const { response, loading } = useAxios({url: "/api/v1/recipes/" + params.id, method: 'get'});
 
   const [data, setData] = useState(null);
 
@@ -24,10 +23,9 @@ export const RecipeShow: React.FC<RecipeShowProps> = (props) => {
   }, [response, params.id]);
 
   return (
-    <>
-      <div className='flex justify-center w-full bg-gray-800 text-gray-300 text-lg'>Home</div>
+    <div className="p-3">
       {!loading && data && <RecipeCard recipe={data} withDetails/>}
-    </>
+    </div>
   )
 }
 

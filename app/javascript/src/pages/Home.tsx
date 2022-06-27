@@ -5,9 +5,9 @@ interface HomeProps { }
 
 export const Home: React.FC<HomeProps> = () => {
   return (
-    <>
-      <div className='flex justify-center w-full bg-gray-800 text-gray-300 text-lg'>Home</div>
-    </>
+    <div className='flex justify-center w-full text-gray-300 text-lg p-10'>
+      check the github repo :&nbsp;<a href="https://github.com/AurianGL/recipes_search" className="hover:text-rose-700 cursor-pointer"> recipes search</a>
+    </div>
   )
 }
 
