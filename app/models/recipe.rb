@@ -24,7 +24,16 @@ class Recipe < ApplicationRecord
     against: [title: 'B', ingredients: 'A'],
     using: { tsearch: { 
       dictionary: 'english', 
-      prefix: true, 
       negation: true,
-      tsvector_column: 'searchable'} }
+      tsvector_column: 'searchable'
+      } }
+
+  pg_search_scope :search_by_any_word, 
+    against: [title: 'B', ingredients: 'A'],
+    using: { tsearch: { 
+      dictionary: 'english', 
+      tsvector_column: 'searchable',
+      any_word: true
+      } },
+      order_within_rank: "array_length (ingredients, 1) asc"
 end

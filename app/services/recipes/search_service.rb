@@ -10,7 +10,11 @@ module Recipes
         @without_ingredients.split(' ').map do |ingredient| 
         "!#{ingredient}"
       end.join(' ') : ''
-      Recipe.search_by_title_and_ingredients(@ingredients + ' '  + @without_ingredients).page(1)
+
+      {
+        exact_recipes: Recipe.search_by_title_and_ingredients("#{@ingredients} #{@without_ingredients}").page(1), 
+        any_recipes: Recipe.search_by_any_word(@ingredients).page(1).sort_by { |recipe| recipe.complexity }
+      }
     end
   end
 end

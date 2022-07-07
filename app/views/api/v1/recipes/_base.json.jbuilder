@@ -8,3 +8,4 @@ json.cuisine recipe.cuisine
 json.category recipe.category
 json.author recipe.author
 json.image recipe.image
+json.complexity recipe.complexity

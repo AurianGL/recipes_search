@@ -22,6 +22,7 @@ export const MyForm = () => {
       validationSchema={Yup.object({
         ingredient: Yup.string()
           .required('Required')
+          .matches(/^[aA-zZ]+$/, 'add one ingredient at a time, no numbers, no whitespaces')
           .test('already exist', "can't add twice the same ingredient",
             (value) => {
               if (state.filter(ingredient => {

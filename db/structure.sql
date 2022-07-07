@@ -43,7 +43,8 @@ CREATE TABLE public.recipes (
     image character varying,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    searchable tsvector GENERATED ALWAYS AS ((setweight(to_tsvector('english'::regconfig, (COALESCE(title, ''::character varying))::text), 'B'::"char") || setweight(to_tsvector('english'::regconfig, (COALESCE(text_ingredients, ''::character varying))::text), 'A'::"char"))) STORED
+    searchable tsvector GENERATED ALWAYS AS ((setweight(to_tsvector('english'::regconfig, (COALESCE(title, ''::character varying))::text), 'B'::"char") || setweight(to_tsvector('english'::regconfig, (COALESCE(text_ingredients, ''::character varying))::text), 'A'::"char"))) STORED,
+    complexity double precision GENERATED ALWAYS AS ((((COALESCE(array_length(ingredients, 1), 0) + COALESCE(prep_time, 0)))::double precision - COALESCE(ratings, (0)::double precision))) STORED
 );
 
 
@@ -122,6 +123,7 @@ SET search_path TO "$user", public;
 INSERT INTO "schema_migrations" (version) VALUES
 ('20220601150525'),
 ('20220621085925'),
-('20220621144733');
+('20220621144733'),
+('20220706095137');
 
 

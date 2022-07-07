@@ -2,7 +2,7 @@ class  Api::V1::RecipesController < ApplicationController
   before_action :set_recipe, only: [:show]
 
   def index
-    if params[:ingredients].present?
+    if params[:ingredients].present? || params[:without_ingredients].present? 
       @recipes = Recipes::SearchService.call(params[:ingredients], params[:without_ingredients])
       render "api/v1/recipes/index.json"
     else

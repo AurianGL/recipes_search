@@ -7,6 +7,9 @@ export const RecipeCard = (props) => {
     <div className="bg-slate-600 rounded">
       <div className="font-bold w-full bg-rose-700 p-3 rounded-t ">{recipe.title}</div>
       {withDetails && <>
+        <div className="p-3 text-rose-800 font-bold bg-slate-300 rounded-b">
+          Complexity: {recipe.complexity}
+        </div>
         <div className="p-3">{recipe.ingredients.map((ingredient, index) => {
           return <div key={index}>{ingredient}</div>
         })}</div>
